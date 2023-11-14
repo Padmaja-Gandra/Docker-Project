@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn install'
+            }
+        }    
+
+    stages {
+
+        stage(docker-build) {
+            steps {
+                sh 'docker build -t docker-project .'
+
+            }
+       
+        }
+    }    
+
+    stages {
+        stage(docker-push) {
+            steps{
+                sh 'echo "push"'
+            }
+
+        }
+    }
+
+}
+}
